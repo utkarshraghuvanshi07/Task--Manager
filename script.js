@@ -20,25 +20,20 @@ btn.addEventListener("click", () => {
           </div>`;
   list.appendChild(li);
   inp.value = ""; 
-
-});
-
-
-const edit = document.querySelector(".edit");
-  let h3 = document.querySelector(".taskName");
-  
-  edit.addEventListener("click", ()=>{
-    h3.contentEditable = "true";
-    h3.focus();
-    console.log("edit");
 });
 
 
 
-let del = document.querySelector(".del");
-del.addEventListener("click", ()=>{
-    let li = event.target.closest(".li");
-    li.remove();
-    console.log("utkarsh");
+list.addEventListener("click",(event)=>{
+    if(event.target.classList.contains("edit")){
+        const h3 = event.target.closest(".li").querySelector(".taskName");
+        h3.contentEditable ="true";
+        h3.focus();
+    }
+
+    if(event.target.classList.contains("del")){
+        event.target.closest(".li").remove();
+    }
 });
+
 
