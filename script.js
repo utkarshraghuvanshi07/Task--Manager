@@ -1,6 +1,8 @@
 const inp = document.querySelector("input");
 const btn = document.querySelector("#add");
 const todoBox = document.querySelector(".todo-list");
+const list = document.querySelector("ul");
+list.style.listStyleType = "none";
 
 
 btn.addEventListener("click", () => {
@@ -8,32 +10,35 @@ btn.addEventListener("click", () => {
 
   if (value.trim() === "") return;
 
-  todoBox.innerHTML += `<div class="li">
+  let li = document.createElement("li");
+  li.classList.add('li');
+  li.innerHTML = `
           <h3 class ="taskName">${value}</h3>
           <div>
             <button class="btn edit">Edit</button>
             <button class="btn del">Delete</button>
-          </div>
-        </div>`;
+          </div>`;
+  list.appendChild(li);
+  inp.value = ""; 
 
-  inp.value = "";
+});
+
+
+const edit = document.querySelector(".edit");
+  let h3 = document.querySelector(".taskName");
   
-  const edit = document.querySelector(".edit");
-  let h3= document.querySelector(".taskName");
   edit.addEventListener("click", ()=>{
     h3.contentEditable = "true";
+    h3.focus();
     console.log("edit");
 });
 
-const del = document.querySelector(".del");
+
+
+let del = document.querySelector(".del");
 del.addEventListener("click", ()=>{
-   
+    let li = event.target.closest(".li");
+    li.remove();
+    console.log("utkarsh");
 });
-
-});
-
-
-
-
-
 
